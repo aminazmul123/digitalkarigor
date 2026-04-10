@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-slate-950 text-white font-sans antialiased;
+        overflow-x: hidden;
+    }
+
+    /* Apply Hind Siliguri for Bangla */
+    [lang="bn"] body {
+        font-family: 'Hind Siliguri', sans-serif;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-slate-900;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-gradient-to-b from-cyan-500 to-blue-600 rounded-full;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        @apply from-cyan-400 to-blue-500;
+    }
+}
+
+@layer utilities {
+
+    /* Text gradient animation */
+    .animate-gradient-x {
+        background-size: 200% 100%;
+        animation: gradient-x 3s ease infinite;
+    }
+
+    @keyframes gradient-x {
+
+        0%,
+        100% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+
+    /* Glow animation */
+    .animate-glow {
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from {
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+        }
+
+        to {
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.6), 0 0 30px rgba(6, 182, 212, 0.4);
+        }
+    }
+
+    /* Heart beat animation */
+    .animate-beat {
+        animation: beat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes beat {
+
+        0%,
+        100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.2);
+        }
+    }
+}
+
+/* --- Bengali Typography Fixes --- */
+/* General size reduction for Bangla to match English visual weight */
+html[lang="bn"] {
+    font-size: 85%;
+}
+
+/* Hind Siliguri handles bold weights better, but we still tone down ultra-black */
+[lang="bn"] .font-black {
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+    padding-bottom: 0.1em;
+}
+
+[lang="bn"] h1,
+[lang="bn"] h2 {
+    line-height: 1.3 !important;
+}
+
+/* Fix for broken Bangla words due to letter-spacing (tracking) */
+[lang="bn"] button,
+[lang="bn"] a,
+[lang="bn"] .tracking-widest,
+[lang="bn"] .tracking-wider,
+[lang="bn"] .tracking-wide {
+    letter-spacing: 0 !important;
+}
+
+/* Adjust button vertical alignment for Hind Siliguri */
+[lang="bn"] button,
+[lang="bn"] a.rounded-xl,
+[lang="bn"] a.rounded-full {
+    padding-top: 0.6em !important;
+    padding-bottom: 0.4em !important;
+}
